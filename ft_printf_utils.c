@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:52:29 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/18 02:08:35 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/18 02:22:35 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,30 @@ void	ft_print_hexadecimal(char h, t_printf *params)
 	return ;
 }
 
-void	ft_printchar(t_printf *params, char c)
+void	ft_print_alnum(t_printf *params, char c, int i)
 {
 	int	value;
 
 	value = va_arg(params->args, int);
-	ft_putchar_fd(value, 1);
+	if (c == 'c')
+	{
+		ft_putchar_fd(value, 1);
+		params->ret -= i;
+	}
+	else if (c == 'd' || c == 'i')
+	{
+		ft_putnbr_fd(value, 1);
+		params->ret += ft_numlen(value) - (i + 1);
+	}
+	return ;
+}
+
+void	ft_print_str(t_printf *params, int i)
+{
+	char	*str;
+
+	str = va_arg(params->args, char *);
+	ft_putstr_fd(str, 1);
+	params->ret += ft_strlen(str) - (i + 1);
+	return ;
 }
