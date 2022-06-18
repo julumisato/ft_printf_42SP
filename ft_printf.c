@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 01:27:04 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/18 01:15:04 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/18 02:09:37 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,19 @@
 #include <stdio.h> //teste
 #include <ctype.h> //teste
 
-int	ft_numlen(int num)
-{
-	int	len;
-
-	len = 0;
-	while (num)
-	{
-		num = num / 10;
-		len ++;
-	}
-	return (len);
-}
-
-t_printf	*ft_eval_format_string(const char *string, t_printf *params)
+void	*ft_eval_format_string(const char *string, t_printf *params)
 {
 	int	i;
 
 	i = 1;
-	while (!ft_strchr("cspdiuxX%", string[i]))
-	{
-		ft_flags(string[i + 1], params);
-		i ++;
-	}
+	while (!ft_strchr("cspdiuxX%", string[i]) && string[i])
+		ft_flags(string[i ++], params);
 	if (string[i] == 'c')
 	{
-		int	c = va_arg(params->args, int);
-		ft_putchar_fd(c, 1);
+		ft_printchar(params, string[i]);
 		params->ret -= i;
 	}
+	//
 	else if (string[i] == 's')
 	{
 		char	*str = va_arg(params->args, char *);
@@ -102,9 +86,9 @@ int	ft_printf(const char *string, ...)
 int	main(void)
 {
 	int orig = printf("hello %d.\n", 12345678);
-	printf("ret orig: %d\n", orig);
+	printf("ret orig: %-d\n", orig);
 	int new = ft_printf("hello %d.\n", 12345678);
-	printf("ret impl: %d\n", new);
+	printf("ret impl: %-d\n", new);
 	return (0);
 }
 
