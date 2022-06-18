@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:52:29 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/18 02:33:43 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/18 03:13:00 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,62 @@ int	ft_numlen(int num)
 }
 
 //not functional
+static int	ft_sizehexa(unsigned int n)
+{
+	int	i;
+
+	i = 0;
+	if (n == 0)
+		return (1);
+	while (n > 0)
+	{
+		n = n / 16;
+		i ++;
+	}
+	return (i);
+}
+
+static char	*ft_hexastr(unsigned int n, char *hexabase)
+{
+	int		size;
+	char	*hexa;
+
+	size = ft_sizehexa(n);
+	hexa = malloc(sizeof(char) * (size + 1));
+	if (!hexa)
+		return (NULL);
+	while (size > 0)
+	{
+		hexa[size - 1] = hexabase[n % 16];
+		n = n / 16;
+		size--;
+	}
+	hexa[size] = '\0';
+	printf("\nstr:'%s'\n", hexa);
+	return (hexa);
+}
+
 void	ft_print_hexadecimal(char h, t_printf *params)
 {
 	unsigned int	hexa;
+	char			*str;
 
 	hexa = va_arg(params->args, unsigned int);
 	if (h == 'x')
 	{
 		if (params->altern_form)
 			ft_putstr_fd("0x", 1);
+			str = ft_hexastr(hexa, "0123456789abcdef");
 	}
 	else if (h == 'X')
 	{
 		if (params->altern_form)
 			ft_putstr_fd("0X", 1);
+		str = ft_hexastr(hexa, "0123456789ABCDEF");
 	}
+	ft_putstr_fd(str, 1);
+	params->ret += ft_strlen(str);
+	free(str);
 	return ;
 }
 
@@ -75,6 +116,12 @@ void	ft_print_alnum(t_printf *params, char c, int i)
 {
 	int	value;
 
+	if (c == '%')
+	{
+		write(1, "%", 1);
+		params->ret -= i;
+		return ;
+	}
 	if (c == '%')
 	{
 		write(1, "%", 1);

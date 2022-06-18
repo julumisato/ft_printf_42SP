@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 01:27:04 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/18 02:34:52 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/18 03:05:56 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ int	ft_printf(const char *string, ...)
 
 int	main(void)
 {
-	int orig = printf("hello %d.%%\n", 12345678);
+	int orig = printf("hello %#x.\n", 12345678);
 	printf("ret orig: %-d\n", orig);
-	int new = ft_printf("hello %d.%%\n", 12345678);
+	int new = ft_printf("hello %#x.\n", 12345678);
 	printf("ret impl: %-d\n", new);
 	return (0);
 }
