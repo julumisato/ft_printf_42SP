@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 01:27:04 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/18 00:22:00 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/18 01:15:04 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ t_printf	*ft_eval_format_string(const char *string, t_printf *params)
 		ft_putnbr_fd(x, 1);
 		params->ret += ft_numlen(x) - (i + 1);
 	}
-	//else if (string[i] == 'u')
+	else if (string[i] == 'u')
+	{
+		unsigned int	ui = va_arg(params->args, unsigned int);
+		ft_putnbr_fd(ui, 1);
+		params->ret += ft_numlen(ui) - (i + 1);
+	}
 	else if (string[i] == 'x' || string[i] == 'X')
 		ft_print_hexadecimal(string[i], params);
 	else if (string[i] == '%')
@@ -96,9 +101,9 @@ int	ft_printf(const char *string, ...)
 
 int	main(void)
 {
-	int orig = printf("hello %d.\n", 1234);
+	int orig = printf("hello %d.\n", 12345678);
 	printf("ret orig: %d\n", orig);
-	int new = ft_printf("hello %d.\n", 1234);
+	int new = ft_printf("hello %d.\n", 12345678);
 	printf("ret impl: %d\n", new);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 04:23:19 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/18 02:07:25 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/18 01:14:49 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 typedef struct s_printf
 {
 	va_list		args;
-	int			ret;	//lenght to return
+	int			ret;
 	int			fill_zero;
 	int			left_posit;
 	int			altern_form;
