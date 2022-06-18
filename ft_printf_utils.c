@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:52:29 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/18 02:22:35 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/18 02:33:43 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ void	ft_print_alnum(t_printf *params, char c, int i)
 {
 	int	value;
 
+	if (c == '%')
+	{
+		write(1, "%", 1);
+		params->ret -= i;
+		return ;
+	}
 	value = va_arg(params->args, int);
 	if (c == 'c')
 	{

@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 01:27:04 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/18 02:24:14 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/18 02:34:52 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_eval_format_string(const char *string, t_printf *params)
 	i = 1;
 	while (!ft_strchr("cspdiuxX%", string[i]) && string[i])
 		ft_flags(string[i ++], params);
-	if (string[i] == 'c' || string[i] == 'd' || string[i] == 'i')
+	if (string[i] == 'c' || string[i] == 'd' || string[i] == 'i'
+		|| string[i] == '%')
 		ft_print_alnum(params, string[i], i);
 	else if (string[i] == 's')
 		ft_print_str(params, i);
@@ -34,8 +35,6 @@ void	ft_eval_format_string(const char *string, t_printf *params)
 	}
 	else if (string[i] == 'x' || string[i] == 'X')
 		ft_print_hexadecimal(string[i], params);
-	else if (string[i] == '%')
-		write(1, "%", 1);
 	return ;
 }
 
@@ -71,9 +70,9 @@ int	ft_printf(const char *string, ...)
 
 int	main(void)
 {
-	int orig = printf("hello %d.\n", 12345678);
+	int orig = printf("hello %d.%%\n", 12345678);
 	printf("ret orig: %-d\n", orig);
-	int new = ft_printf("hello %d.\n", 12345678);
+	int new = ft_printf("hello %d.%%\n", 12345678);
 	printf("ret impl: %-d\n", new);
 	return (0);
 }
