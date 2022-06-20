@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 01:27:04 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/20 14:34:17 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/20 17:00:42 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	ft_eval_format_string(const char *string, t_printf *params)
 		ft_print_alnum(params, string[i], i);
 	else if (string[i] == 's')
 		ft_print_str(params, i);
-	//else if (string[i] == 'p')
+	else if (string[i] == 'p')
+		ft_print_pointer(params);
 	else if (string[i] == 'u')
 	{
 		unsigned int	ui = va_arg(params->args, unsigned int);
@@ -67,9 +68,13 @@ int	ft_printf(const char *string, ...)
 
 int	main(void)
 {
-	int orig = printf("12345678=%#X.\n", 12345678);
+	void	*pointer;
+	int		a = 100;
+
+	pointer = &a;
+	int orig = printf("pointer=%p.\n", pointer);
 	printf("ret orig: %d\n", orig);
-	int new = ft_printf("12345678=%#X.\n", 12345678);
+	int new = ft_printf("pointer=%p.\n", pointer);
 	printf("ret impl: %d\n", new);
 	return (0);
 }

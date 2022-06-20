@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:52:29 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/20 14:34:34 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/20 16:59:40 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	ft_numlen(int num)
 	return (len);
 }
 
-//not functional
 static int	ft_sizehexa(unsigned int n)
 {
 	int	i;
@@ -94,7 +93,7 @@ void	ft_print_hexadecimal(char h, t_printf *params, int i)
 
 	hexa = va_arg(params->args, unsigned int);
 	if (h == 'x')
-		str = str = ft_hexastr(hexa, "0123456789abcdef");
+		str = ft_hexastr(hexa, "0123456789abcdef");
 	else if (h == 'X')
 		str = ft_hexastr(hexa, "0123456789ABCDEF");
 	if (params->altern_form)
@@ -124,12 +123,6 @@ void	ft_print_alnum(t_printf *params, char c, int i)
 		params->ret -= i;
 		return ;
 	}
-	if (c == '%')
-	{
-		write(1, "%", 1);
-		params->ret -= i;
-		return ;
-	}
 	value = va_arg(params->args, int);
 	if (c == 'c')
 	{
@@ -151,5 +144,19 @@ void	ft_print_str(t_printf *params, int i)
 	str = va_arg(params->args, char *);
 	ft_putstr_fd(str, 1);
 	params->ret += ft_strlen(str) - (i + 1);
+	return ;
+}
+
+void	ft_print_pointer(t_printf *params)
+{
+	unsigned long	pointer;
+	char			*str;
+
+	pointer = (unsigned long)va_arg(params->args, void *);
+	str = ft_hexastr(pointer, "0123456789abcdef");
+	ft_putstr_fd("0x", 1);
+	ft_putstr_fd(str, 1);
+	params->ret += ft_strlen(str) + ft_strlen("0x");
+	free(str);
 	return ;
 }
