@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:52:29 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/18 03:13:00 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/20 14:34:34 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,39 +77,41 @@ static char	*ft_hexastr(unsigned int n, char *hexabase)
 	hexa = malloc(sizeof(char) * (size + 1));
 	if (!hexa)
 		return (NULL);
-	while (size > 0)
+	while (size >= 0)
 	{
 		hexa[size - 1] = hexabase[n % 16];
 		n = n / 16;
 		size--;
 	}
 	hexa[size] = '\0';
-	printf("\nstr:'%s'\n", hexa);
 	return (hexa);
 }
 
-void	ft_print_hexadecimal(char h, t_printf *params)
+void	ft_print_hexadecimal(char h, t_printf *params, int i)
 {
 	unsigned int	hexa;
 	char			*str;
 
 	hexa = va_arg(params->args, unsigned int);
 	if (h == 'x')
-	{
-		if (params->altern_form)
-			ft_putstr_fd("0x", 1);
-			str = ft_hexastr(hexa, "0123456789abcdef");
-	}
+		str = str = ft_hexastr(hexa, "0123456789abcdef");
 	else if (h == 'X')
-	{
-		if (params->altern_form)
-			ft_putstr_fd("0X", 1);
 		str = ft_hexastr(hexa, "0123456789ABCDEF");
+	if (params->altern_form)
+	{
+		if (h == 'x')
+			ft_putstr_fd("0x", 1);
+		else
+			ft_putstr_fd("0X", 1);
 	}
 	ft_putstr_fd(str, 1);
-	params->ret += ft_strlen(str);
+	if (params->altern_form)
+		params->ret += ft_strlen(str) - (i - 1);
+	else
+		params->ret += ft_strlen(str) - (i + 1);
 	free(str);
 	return ;
+	
 }
 
 void	ft_print_alnum(t_printf *params, char c, int i)

@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 04:23:19 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/18 02:25:39 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/20 14:16:19 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_print_alnum(t_printf *params, char c, int i);
 void	ft_print_str(t_printf *params, int i);
 
 //testes e utils
-void		ft_print_hexadecimal(char h, t_printf *params);
+void		ft_print_hexadecimal(char h, t_printf *params, int i);
 int			ft_numlen(int num);
 
 
