@@ -1,3 +1,7 @@
 a.out
 *.a
-lib*
+*.o
+libft/
+ft_printf_tester/
+printfTester/
+.gitignore

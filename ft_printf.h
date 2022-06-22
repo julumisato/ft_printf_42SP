@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 04:23:19 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/20 16:58:03 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/21 18:34:38 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	ft_print_str(t_printf *params, int i);
 //testes e utils
 void		ft_print_hexadecimal(char h, t_printf *params, int i);
 int			ft_numlen(int num);
-void	ft_print_pointer(t_printf *params);
+void		ft_printf_pointer(t_printf *params);
+void		ft_printf_unsigned_int(t_printf *p, int i);

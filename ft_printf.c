@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 01:27:04 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/20 17:00:42 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/21 19:15:15 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,9 @@ int	ft_eval_format_string(const char *string, t_printf *params)
 	else if (string[i] == 's')
 		ft_print_str(params, i);
 	else if (string[i] == 'p')
-		ft_print_pointer(params);
+		ft_printf_pointer(params);
 	else if (string[i] == 'u')
-	{
-		unsigned int	ui = va_arg(params->args, unsigned int);
-		ft_putnbr_fd(ui, 1);
-		params->ret += ft_numlen(ui) - (i + 1);
-	}
+		ft_printf_unsigned_int(params, i);
 	else if (string[i] == 'x' || string[i] == 'X')
 		ft_print_hexadecimal(string[i], params, i);
 	return (i);
@@ -66,18 +62,16 @@ int	ft_printf(const char *string, ...)
 	return (retvalue);
 }
 
-int	main(void)
-{
-	void	*pointer;
-	int		a = 100;
+// int	main(void)
+// {
+// 	int a = 12;
+// 	int orig = printf("'%x'", &a);
+// 	printf("\nret orig: '%d'\n", orig);
+// 	int impl = ft_printf("'%x'", &a);
+// 	printf("\nret impl: '%d'\n", impl);
+// 	return (0);
+// }
 
-	pointer = &a;
-	int orig = printf("pointer=%p.\n", pointer);
-	printf("ret orig: %d\n", orig);
-	int new = ft_printf("pointer=%p.\n", pointer);
-	printf("ret impl: %d\n", new);
-	return (0);
-}
-
-/*Compile*/
-// gcc ft_printf.c ft_printf_utils.c libftprintf.a && ./a.out
+/*Compile
+gcc ft_printf.c ft_printf_utils.c libftprintf.a && ./a.out
+*/
