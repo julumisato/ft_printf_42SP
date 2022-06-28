@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 01:27:04 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/21 19:15:15 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/27 23:02:00 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_eval_format_string(const char *string, t_printf *params)
 	else if (string[i] == 's')
 		ft_print_str(params, i);
 	else if (string[i] == 'p')
-		ft_printf_pointer(params);
+		ft_printf_pointer(params, i);
 	else if (string[i] == 'u')
 		ft_printf_unsigned_int(params, i);
 	else if (string[i] == 'x' || string[i] == 'X')
@@ -64,10 +64,10 @@ int	ft_printf(const char *string, ...)
 
 // int	main(void)
 // {
-// 	int a = 12;
-// 	int orig = printf("'%x'", &a);
+// 	int a = -101;
+// 	int orig = printf(" %u ", a);
 // 	printf("\nret orig: '%d'\n", orig);
-// 	int impl = ft_printf("'%x'", &a);
+// 	int impl = ft_printf(" %u ", a);
 // 	printf("\nret impl: '%d'\n", impl);
 // 	return (0);
 // }

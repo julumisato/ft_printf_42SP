@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:52:29 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/21 19:14:56 by jusato           ###   ########.fr       */
+/*   Updated: 2022/06/27 23:01:08 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,12 +163,17 @@ void	ft_print_str(t_printf *params, int i)
 	return ;
 }
 
-void	ft_printf_pointer(t_printf *params)
+void	ft_printf_pointer(t_printf *params, int i)
 {
 	unsigned long	pointer;
 	char				*str;
 
 	pointer = (unsigned long)va_arg(params->args, void *);
+	if (pointer == 0)
+	{
+		params->ret += write(1, "(nil)", 5) - (i + 1);
+		return ;
+	}
 	str = ft_hexastr(pointer, "0123456789abcdef");
 	if (!str)
 	{
@@ -178,18 +183,41 @@ void	ft_printf_pointer(t_printf *params)
 	write(1, "0x", 2);
 	ft_putstr_fd(str, 1);
 	params->ret += ft_strlen(str);
-	printf("\nstr:%s, strlen=%ld\n", str, ft_strlen(str));
 	free(str);
 	return ;
 }
 
+void	ft_put_unsignednbr(unsigned int n)
+{
+	if (n >= 10)
+		ft_put_unsignednbr(n / 10);
+	ft_putchar_fd(n % 10 + '0', 1);
+	return ;
+}
+
+int	ft_unsigned_numlen(unsigned int n)
+{
+	int	len;
+
+	len = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
+	{
+		n = n / 10;
+		len ++;
+	}
+	return (len);
+}
+
 void	ft_printf_unsigned_int(t_printf *p, int i)
 {
-	unsigned int	ui;
+	long	ui;
 
-	ui = (unsigned int)va_arg(p->args, unsigned int);
-	ui = (unsigned int)(4294967295 + 1 + ui);
-	ft_putnbr_fd(ui, 1);
-	p->ret += ft_numlen(ui) - (i + 1);
+	ui = va_arg(p->args, unsigned int);
+	if (ui < 0)
+		ui = (4294967295 + ui);
+	ft_put_unsignednbr(ui);
+	p->ret += ft_unsigned_numlen(ui) - (i + 1);
 	return ;
 }
