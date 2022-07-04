@@ -6,12 +6,16 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 04:23:19 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/04 17:08:29 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/04 17:41:04 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
 #include <stdarg.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include "libft/libft.h"
 
 typedef struct s_printf
@@ -44,3 +48,5 @@ int			ft_sizehexa(unsigned long long n);
 int			ft_unsigned_numlen(unsigned int n);
 void		ft_put_unsignednbr(unsigned int n);
 char		*ft_hexastr(unsigned long n, char h);
+
+#endif
