@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 04:23:19 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/04 15:39:58 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/04 16:03:23 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ void		ft_print_hexadecimal(char h, t_printf *params, int i);
 int			ft_numlen(int num);
 int			ft_sizehexa(unsigned long long n);
 int			ft_unsigned_numlen(unsigned int n);
-char		*ft_hexastr(unsigned long n, char *hexabase);
+void		ft_put_unsignednbr(unsigned int n);
+char		*ft_hexastr(unsigned long n, char h);

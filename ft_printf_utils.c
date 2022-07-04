@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:31:50 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/04 15:39:34 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/04 16:10:13 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,24 @@ int	ft_unsigned_numlen(unsigned int n)
 	return (len);
 }
 
-char	*ft_hexastr(unsigned long n, char *hexabase)
+void	ft_put_unsignednbr(unsigned int n)
+{
+	if (n >= 10)
+		ft_put_unsignednbr(n / 10);
+	ft_putchar_fd(n % 10 + '0', 1);
+	return ;
+}
+
+char	*ft_hexastr(unsigned long n, char h)
 {
 	int		size;
+	char	*hexabase;
 	char	*hexa;
 
+	if (h == 'x')
+		hexabase = "0123456789abcdef";
+	if (h == 'X')
+		hexabase = "0123456789ABCDEF";
 	size = ft_sizehexa(n);
 	hexa = malloc(sizeof(char) * (size + 1));
 	if (!hexa)
