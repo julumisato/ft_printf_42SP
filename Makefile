@@ -6,15 +6,14 @@
 #    By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/17 01:36:36 by jusato            #+#    #+#              #
-#    Updated: 2022/07/04 15:49:27 by jusato           ###   ########.fr        #
+#    Updated: 2022/07/04 17:07:31 by jusato           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =		libftprintf.a
 
-SRCS =		ft_printf.c ft_printf_formats.c ft_printf_utils.c ft_printf_init.c
+SRCS =		ft_printf.c ft_printf_formats.c ft_printf_utils.c
 OBJS =		$(SRCS:.c=.o)
-INCLUDES =	.
 LIB =		libft/libft.a
 
 CC =		cc
