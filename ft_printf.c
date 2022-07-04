@@ -6,13 +6,11 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 01:27:04 by jusato            #+#    #+#             */
-/*   Updated: 2022/06/27 23:02:00 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/04 16:38:02 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h> //teste
-#include <ctype.h> //teste
 
 int	ft_eval_format_string(const char *string, t_printf *params)
 {
@@ -61,17 +59,3 @@ int	ft_printf(const char *string, ...)
 	free(params);
 	return (retvalue);
 }
-
-// int	main(void)
-// {
-// 	int a = -101;
-// 	int orig = printf(" %u ", a);
-// 	printf("\nret orig: '%d'\n", orig);
-// 	int impl = ft_printf(" %u ", a);
-// 	printf("\nret impl: '%d'\n", impl);
-// 	return (0);
-// }
-
-/*Compile
-gcc ft_printf.c ft_printf_utils.c libftprintf.a && ./a.out
-*/

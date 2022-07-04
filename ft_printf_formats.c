@@ -6,12 +6,11 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:52:29 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/04 16:08:06 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/04 16:30:36 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h> //teste
 
 void	ft_print_alnum(t_printf *params, char c, int i)
 {
