@@ -6,7 +6,7 @@
 #    By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/17 01:36:36 by jusato            #+#    #+#              #
-#    Updated: 2022/07/04 17:43:58 by jusato           ###   ########.fr        #
+#    Updated: 2022/07/06 18:57:18 by jusato           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,5 +43,7 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+bonus: all
 
 .PHONY: all clean fclean re
