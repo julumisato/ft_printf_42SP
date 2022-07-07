@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 04:23:19 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/06 20:03:49 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/06 21:36:00 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_printf
 	int			altern_form;
 	int			space;
 	int			signal;
+	int			min;
 }	t_printf;
 
 /* initial functions (ft_printf.c) */
@@ -42,11 +43,13 @@ void		ft_printf_pointer(t_printf *param);
 void		ft_printf_unsigned_int(t_printf *param);
 void		ft_printf_hexadecimal(t_printf *param, char h);
 
-/* utils (ft_printf_utils.c) */
+/* utils (ft_printf_utils[1/2].c) */
 int			ft_numlen(int num);
 int			ft_sizehexa(unsigned long long n);
 int			ft_unsigned_numlen(unsigned int n);
 void		ft_put_unsignednbr(unsigned int n);
 char		*ft_hexastr(unsigned long n, char h);
+void	ft_printf_char(t_printf *param, char c);
+void	ft_printf_num(t_printf *param, int value);
 
 #endif

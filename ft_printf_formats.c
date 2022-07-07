@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:52:29 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/06 20:05:18 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/06 21:42:02 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,16 @@ void	ft_printf_alnum(t_printf *param, char c)
 	}
 	value = va_arg(param->args, int);
 	if (c == 'c')
-	{
-		param->ret += write(1, &value, 1);
-	}
+		ft_printf_char(param, value);
 	else if (c == 'd' || c == 'i')
-	{
-		ft_putnbr_fd(value, 1);
-		param->ret += ft_numlen(value);
-	}
+		ft_printf_num(param, value);
 	return ;
 }
 
 void	ft_printf_string(t_printf *param)
 {
 	char	*str;
+	size_t		i;
 
 	str = va_arg(param->args, char *);
 	if (!str)
@@ -44,7 +40,14 @@ void	ft_printf_string(t_printf *param)
 		param->ret += write(1, "(null)", 6);
 		return ;
 	}
+	i = 0;
+	if (!param->left_posit && param->min > 0)
+		while(i++ < param->min - ft_strlen(str))
+			param->ret += write(1, " ", 1);
 	ft_putstr_fd(str, 1);
+	if (param->left_posit && param->min > 0)
+		while(i++ < param->min - ft_strlen(str))
+			param->ret += write(1, " ", 1);
 	param->ret += ft_strlen(str);
 	return ;
 }
@@ -62,14 +65,14 @@ void	ft_printf_pointer(t_printf *param)
 	}
 	str = ft_hexastr(pointer, 'x');
 	if (!str)
-	{
 		param->ret += write(1, "(null)", 6);
-		return ;
+	else
+	{
+		param->ret += write(1, "0x", 2);
+		ft_putstr_fd(str, 1);
+		param->ret += ft_strlen(str);
+		free(str);
 	}
-	param->ret += write(1, "0x", 2);
-	ft_putstr_fd(str, 1);
-	param->ret += ft_strlen(str);
-	free(str);
 	return ;
 }
 

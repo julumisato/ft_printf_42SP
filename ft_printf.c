@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 01:27:04 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/06 20:08:36 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/06 21:35:14 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ t_printf	*ft_init(t_printf	*init)
 	init->altern_form = 0;
 	init->space = 0;
 	init->signal = 0;
+	init->min = 0;
 	return (init);
 }
-int	ft_width_eval(t_printf *param, char *flag);
 
 int	ft_flags(t_printf *param, char *flag)
 {
@@ -43,8 +43,11 @@ int	ft_flags(t_printf *param, char *flag)
 			param->signal = 1;
 		i ++;
 	}
-	while(!ft_strchr("cspdiuxX%", flag[i]))
-		i ++;
+	if(ft_isdigit(flag[i]))
+	{
+		param->min = ft_atoi(&flag[i]);
+		i += ft_numlen(param->min);
+	}
 	return (i);
 }
 
@@ -55,6 +58,7 @@ void	ft_reset_flags(t_printf *param)
 	param->altern_form = 0;
 	param->space = 0;
 	param->signal = 0;
+	param->min = 0;
 	return ;
 }
 
