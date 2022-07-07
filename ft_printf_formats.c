@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:52:29 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/06 21:45:05 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/06 21:58:34 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,8 @@ void	ft_printf_pointer(t_printf *param)
 		param->ret += write(1, "(null)", 6);
 	else
 	{
-		param->ret += write(1, "0x", 2);
+		param->ret += (write(1, "0x", 2) + ft_strlen(str));
 		ft_putstr_fd(str, 1);
-		param->ret += ft_strlen(str);
 		free(str);
 	}
 	return ;
