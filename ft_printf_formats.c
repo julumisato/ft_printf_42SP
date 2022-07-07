@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:52:29 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/06 21:42:02 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/06 21:45:05 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_printf_alnum(t_printf *param, char c)
 void	ft_printf_string(t_printf *param)
 {
 	char	*str;
-	size_t		i;
+	size_t	i;
 
 	str = va_arg(param->args, char *);
 	if (!str)
@@ -42,11 +42,11 @@ void	ft_printf_string(t_printf *param)
 	}
 	i = 0;
 	if (!param->left_posit && param->min > 0)
-		while(i++ < param->min - ft_strlen(str))
+		while (i++ < param->min - ft_strlen(str))
 			param->ret += write(1, " ", 1);
 	ft_putstr_fd(str, 1);
 	if (param->left_posit && param->min > 0)
-		while(i++ < param->min - ft_strlen(str))
+		while (i++ < param->min - ft_strlen(str))
 			param->ret += write(1, " ", 1);
 	param->ret += ft_strlen(str);
 	return ;

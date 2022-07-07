@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 01:27:04 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/06 21:35:14 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/06 21:44:33 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_flags(t_printf *param, char *flag)
 	int	i;
 
 	i = 0;
-	while(ft_strchr("0-# +", flag[i]))
+	while (ft_strchr("0-# +", flag[i]))
 	{
 		if (flag[i] == '0')
 			param->fill_zero = 1;
@@ -43,7 +43,7 @@ int	ft_flags(t_printf *param, char *flag)
 			param->signal = 1;
 		i ++;
 	}
-	if(ft_isdigit(flag[i]))
+	if (ft_isdigit(flag[i]))
 	{
 		param->min = ft_atoi(&flag[i]);
 		i += ft_numlen(param->min);

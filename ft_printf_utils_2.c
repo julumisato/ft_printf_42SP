@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:49:12 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/06 21:22:09 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/06 21:45:16 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	ft_printf_char(t_printf *param, char c)
 	{
 		if (!param->left_posit)
 		{
-			while(i++ < param->min - 1)
+			while (i++ < param->min - 1)
 				param->ret += write(1, " ", 1);
 		}
 		param->ret += write(1, &c, 1);
 		if (param->left_posit)
 		{
-			while(i++ < param->min - 1)
+			while (i++ < param->min - 1)
 				param->ret += write(1, " ", 1);
 		}
 	}
