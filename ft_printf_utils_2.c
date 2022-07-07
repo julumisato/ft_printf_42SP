@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:49:12 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/07 15:45:31 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/07 15:53:12 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	ft_printf_char(t_printf *param, char c)
 
 void	ft_printf_num(t_printf *param, int value)
 {
+	int	i;
+
 	if (value >= 0)
 	{
 		if (param->space)
@@ -45,7 +47,14 @@ void	ft_printf_num(t_printf *param, int value)
 		else if (param->signal)
 			param->ret += write(1, "+", 1);
 	}
+	i = 0;
+	if (!param->left_posit && param->min > ft_numlen(value))
+		while (i++ < (param->min - ft_numlen(value)))
+			param->ret += write(1, " ", 1);
 	ft_putnbr_fd(value, 1);
+	if (param->left_posit && param->min > ft_numlen(value))
+		while (i++ < (param->min - ft_numlen(value)))
+			param->ret += write(1, " ", 1);
 	param->ret += ft_numlen(value);
 }
 
