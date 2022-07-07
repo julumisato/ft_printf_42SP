@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 04:23:19 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/06 21:46:06 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/07 15:45:15 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ void		ft_put_unsignednbr(unsigned int n);
 char		*ft_hexastr(unsigned long n, char h);
 void		ft_printf_char(t_printf *param, char c);
 void		ft_printf_num(t_printf *param, int value);
+void		ft_printf_str_width(t_printf *param, char *str);
+void		ft_printf_ptr_width(t_printf *param, char *str);
 
 #endif

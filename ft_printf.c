@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 01:27:04 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/06 21:44:33 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/07 13:17:00 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	ft_eval_format_string(t_printf *param, const char *string)
 		ft_printf_unsigned_int(param);
 	else if (string[i] == 'x' || string[i] == 'X')
 		ft_printf_hexadecimal(param, string[i]);
+	ft_reset_flags(param);
 	return (i);
 }
 

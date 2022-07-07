@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:52:29 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/06 21:58:34 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/07 15:48:22 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,12 @@ void	ft_printf_alnum(t_printf *param, char c)
 void	ft_printf_string(t_printf *param)
 {
 	char	*str;
-	size_t	i;
 
 	str = va_arg(param->args, char *);
 	if (!str)
-	{
-		param->ret += write(1, "(null)", 6);
-		return ;
-	}
-	i = 0;
-	if (!param->left_posit && param->min > 0)
-		while (i++ < param->min - ft_strlen(str))
-			param->ret += write(1, " ", 1);
-	ft_putstr_fd(str, 1);
-	if (param->left_posit && param->min > 0)
-		while (i++ < param->min - ft_strlen(str))
-			param->ret += write(1, " ", 1);
-	param->ret += ft_strlen(str);
+		ft_printf_str_width(param, "(null)");
+	else
+		ft_printf_str_width(param, str);
 	return ;
 }
 
@@ -60,16 +49,15 @@ void	ft_printf_pointer(t_printf *param)
 	pointer = (unsigned long)va_arg(param->args, void *);
 	if (pointer == 0)
 	{
-		param->ret += write(1, "(nil)", 5);
+		ft_printf_str_width(param, "(nil)");
 		return ;
 	}
 	str = ft_hexastr(pointer, 'x');
 	if (!str)
-		param->ret += write(1, "(null)", 6);
+		ft_printf_str_width(param, "(null)");
 	else
 	{
-		param->ret += (write(1, "0x", 2) + ft_strlen(str));
-		ft_putstr_fd(str, 1);
+		ft_printf_ptr_width(param, str);
 		free(str);
 	}
 	return ;
@@ -93,13 +81,13 @@ void	ft_printf_hexadecimal(t_printf *param, char h)
 	hexa = va_arg(param->args, unsigned int);
 	if (hexa == 0)
 	{
-		param->ret += write(1, "0", 1);
+		ft_printf_str_width(param, "0");
 		return ;
 	}
 	str = ft_hexastr(hexa, h);
 	if (!str)
 	{
-		param->ret += write(1, "(null)", 6);
+		ft_printf_str_width(param, "(null)");
 		return ;
 	}
 	if (param->altern_form)
@@ -107,8 +95,7 @@ void	ft_printf_hexadecimal(t_printf *param, char h)
 		param->ret += write(1, "0", 1);
 		param->ret += write(1, &h, 1);
 	}
-	ft_putstr_fd(str, 1);
-	param->ret += ft_strlen(str);
+	ft_printf_str_width(param, str);
 	free(str);
 	return ;
 }

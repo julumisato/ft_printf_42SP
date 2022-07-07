@@ -6,7 +6,7 @@
 /*   By: jusato <jusato@student.42sp.org.br>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:49:12 by jusato            #+#    #+#             */
-/*   Updated: 2022/07/06 21:54:56 by jusato           ###   ########.fr       */
+/*   Updated: 2022/07/07 15:45:31 by jusato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,38 @@ void	ft_printf_num(t_printf *param, int value)
 	}
 	ft_putnbr_fd(value, 1);
 	param->ret += ft_numlen(value);
+}
+
+void	ft_printf_str_width(t_printf *param, char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!param->left_posit && param->min > (int)ft_strlen(str))
+		while (i++ < (param->min - (int)ft_strlen(str)))
+			param->ret += write(1, " ", 1);
+	ft_putstr_fd(str, 1);
+	if (param->left_posit && param->min > (int)ft_strlen(str))
+		while (i++ < (param->min - (int)ft_strlen(str)))
+			param->ret += write(1, " ", 1);
+	param->ret += ft_strlen(str);
+	return ;
+}
+
+void	ft_printf_ptr_width(t_printf *param, char *str)
+{
+	int	i;
+
+	i = 0;
+	param->min -= 2;
+	if (!param->left_posit && param->min > (int)ft_strlen(str))
+		while (i++ < (param->min - (int)ft_strlen(str)))
+			param->ret += write(1, " ", 1);
+	param->ret += (write(1, "0x", 2));
+	ft_putstr_fd(str, 1);
+	param->ret += ft_strlen(str);
+	if (param->left_posit && param->min > (int)ft_strlen(str))
+		while (i++ < (param->min - (int)ft_strlen(str)))
+			param->ret += write(1, " ", 1);
+	return ;
 }
